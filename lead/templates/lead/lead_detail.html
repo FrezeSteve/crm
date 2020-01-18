@@ -1,0 +1,35 @@
+<div class="card mt-2">
+  <h5 class="card-header text-light bg-primary">{{lead.name}}</h5>
+  <div class="card-body">
+    <a
+      href="{% url 'lead_edit' pk=object.pk %}"
+      class="btn btn-warning mr-1 my-1"
+      >Edit <i class="fas fa-pencil-alt"></i
+    ></a>
+    <a
+      href="{% url 'lead_remove' pk=object.pk %}"
+      class="btn btn-danger mr-1  my-1"
+      >Delete <i class="fas fa-trash"></i
+    ></a>
+    <hr />
+    <section role="leadinformation">
+      <ul class="list-group">
+        <li class="list-group-item">
+          Name: {{object.name}}
+        </li>
+        <li class="list-group-item">
+          location: {{object.location}}
+        </li>
+        <li class="list-group-item">
+          phonenumber: {{object.phonenumber}}
+        </li>
+        <li class="list-group-item">
+          email: {{object.email}}
+        </li>
+        <li class="list-group-item">
+          description: {{object.description}}
+        </li>
+      </ul>
+    </section>
+  </div>
+</div>

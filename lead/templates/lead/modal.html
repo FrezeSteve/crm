@@ -1,0 +1,96 @@
+<!-- Modal Task-->
+<div
+  class="modal fade"
+  id="exampleModalScrollable"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalScrollableTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">Tasks</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% if task_form %}
+        <button
+          type="button"
+          data-toggle="modal"
+          data-target="#addTask"
+          class="btn btn-primary btn-sm text-light mb-2"
+        >
+          Add Task
+        </button>
+        {% endif %}
+        <ul class="list-group">
+          {% for task in task_count %}
+          <li class="list-group-item">
+            <a href="{% url 'task_detail' pk=task.pk %}">{{task.title}}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% include "lead/task_create.html" %}
+
+<!-- Modal Reminder-->
+<div
+  class="modal fade"
+  id="Reminder"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalScrollableTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">Reminder</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% if task_detail %}
+        <button
+          type="button"
+          data-toggle="modal"
+          data-target="#addReminder"
+          class="btn btn-primary btn-sm text-light mb-2"
+        >
+          Add Reminder
+        </button>
+        {% endif %} {% if reminders %}
+        <ul class="list-group">
+          {% for reminder in reminders %}
+          <li class="list-group-item">
+            <a href="{% url 'task_detail' pk=reminder.task.pk %}"
+              >{{reminder.task.title}}</a
+            >
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% include "lead/reminder_form.html" %}

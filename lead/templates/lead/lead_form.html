@@ -1,0 +1,11 @@
+<div class="card mt-2">
+  <div class="card-header text-light bg-primary">
+    {% if create %} Add new Lead {% else %} Edit Lead {% endif %}
+  </div>
+  <div class="card-body">
+    <form method="post">
+      {% csrf_token %} {{form}}
+      <button type="submit" class="btn btn-success my-2">Save</button>
+    </form>
+  </div>
+</div>

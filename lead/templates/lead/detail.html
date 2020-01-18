@@ -1,0 +1,30 @@
+{% extends "lead/base.html" %}
+<title>
+  {% block title %}{{object.name}} {% endblock %}
+</title>
+<div class="card">
+  <div class="card-header">
+    Featured
+  </div>
+  <div class="card-body">
+    <a href="#" class="btn btn-warning"
+      >Edit <i class="far fa-pencil-alt"></i
+    ></a>
+  </div>
+</div>
+
+<body>
+  <div class="container">
+    {% block content %}
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          {% if lead_detail %} 
+                {% include "lead/lead_detail.html" %}
+          {% else %} {% include "lead/task_detail.html" %} {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endblock content %}
+  </div>
+</body>

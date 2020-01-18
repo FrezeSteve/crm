@@ -1,0 +1,45 @@
+<!-- Modal Task Three-->
+<div
+  class="modal fade"
+  id="addTask"
+  data-backdrop="static"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalScrollableTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">
+          Add new Task
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% load filt %} {% if task_form %}
+        <form action="{% url 'task_create' pk=object.pk %}" method="post"> {% csrf_token %}
+          {% for field in task_form %} {% if field.field.widget|is_checkbox %}
+          <div class="form-group form-check">
+            {{ field }}{{ field.label_tag }}
+          </div>
+          {% else %}
+          <div class="form-group">{{ field.label_tag }}{{ field }}</div>
+
+          {% endif %} {% endfor %}
+          <button type="submit" class="btn btn-success btn-sm my-1">
+            Save
+          </button>
+        </form>
+         {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

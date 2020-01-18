@@ -1,0 +1,22 @@
+{% extends "lead/base.html" %}
+<title>
+  {% block title %} {% if create %} Create Lead {% else %} Edit Lead {% endif %}
+  {% endblock title %}
+</title>
+<body>
+  <div class="container">
+    {% block content %}
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+            {% if task_update %}
+            {% include "lead/task_form.html" %}
+            {% else %}
+            {% include "lead/lead_form.html" %}
+            {% endif %}
+        </div>
+      </div>
+    </div>
+    {% endblock content %}
+  </div>
+</body>

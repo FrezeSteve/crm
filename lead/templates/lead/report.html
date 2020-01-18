@@ -1,0 +1,21 @@
+{% extends "lead/base.html" %}
+<title>
+  {% block title %} Reports {% endblock %}
+</title>
+<body>
+  {% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12 p-3 mt-2">
+        <div class="jumbotron p-3 mb-2">
+          <h5 class="m-0 p-0">Sources Conversion</h5>
+        </div>
+        <img src="{{image}}" class="img-fluid" alt="image" />
+        <div class="jumbotron p-0 mt-2">
+          <a class="btn btn-link my-1" href="{{csv}}">generate csv</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+</body>
