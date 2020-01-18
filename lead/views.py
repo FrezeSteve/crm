@@ -210,6 +210,7 @@ def createTask(request, pk):
         return HttpResponseRedirect(reverse_lazy('login'))
     return HttpResponseForbidden("<h1>I Don't know whats happening</h1>")
 
+
 # an endpoint that creates a reminder
 @login_required
 def createReminder(request, pk):
@@ -244,18 +245,20 @@ def reports(request):
     plt.savefig(os.path.join(settings.MEDIA_ROOT, 'books_read.png'))
     import csv
     with open(os.path.join(settings.MEDIA_ROOT, 'lead.csv'), mode='w') as employee_file:
-        employee_writer = csv.writer(employee_file, delimiter=',', lineterminator='\n',)
+        employee_writer = csv.writer(employee_file, delimiter=',', lineterminator='\n', )
 
-        employee_writer.writerow(['Leads by: {}'.format(request.user.username)])
-        employee_writer.writerow(['Name', 'Location', 'Phone Number', 'Email', 'Description'])
+        # employee_writer.writerow(['Leads by: {}'.format(request.user.username)])
+        employee_writer.writerow(['#', 'Name', 'Location', 'Phone Number', 'Email', 'Description'])
         qs = Lead.objects.filter(trash=False, assigned=request.user).order_by('-pk').all()
-        for lead in qs:
+        for index, lead in enumerate(qs):
             employee_writer.writerow(
-                ['{}'.format(lead.name),
-                 '{}'.format(lead.location),
-                 '{}'.format(lead.phonenumber),
-                 '{}'.format(lead.email),
-                 '{}'.format(lead.description)]
+                [
+                    '{}'.format(index+1),
+                    '{}'.format(lead.name),
+                    '{}'.format(lead.location),
+                    '{}'.format(lead.phonenumber),
+                    '{}'.format(lead.email),
+                    '{}'.format(lead.description)]
             )
     context = {
         'image': '/media/books_read.png/',

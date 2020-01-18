@@ -23,6 +23,20 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
     />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <style>
+                    @media screen and (max-width: 425px) {
+                    #vismd {
+                      visibility: hidden;
+                      display: none;
+                    }
+                  }
+
+                  @media screen and (min-width: 992px) {
+                    #vismd {
+                      visibility: visible;
+                    }
+                  }
+    </style>
   </head>
   <body>
     {% if request.user.is_authenticated %}

@@ -2,7 +2,9 @@
   <div class="container">
 <a class="navbar-brand" href="/">Perf</a>
 <div class="navbar-nav">
-  <a class="nav-link px-1 px-sm-3" href="/"><span class="text-light">Home</span>
+  <a class="nav-link px-1 px-sm-3" href="/"><span class="text-light">
+  <i class="fas fa-lg text-light fa-home"></i>
+  </span>
   </a>
 </div>
 <div class="navbar-nav ml-sm-auto">
@@ -21,6 +23,9 @@
   </button>
   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="#">Profile</a>
+          {% if request.user.is_staff %}
+                <a href="{% url 'report' %}" class="dropdown-item" >Reports</a>
+              {% endif %}
           <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
         </div>
         </li>
