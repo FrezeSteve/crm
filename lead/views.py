@@ -108,6 +108,14 @@ class LeadUpdateView(LoginRequiredMixin, UpdateView):
                 task__author=self.request.user,  # the user is the one is the owner
                 trash=False  # the reminder is not in the trash
             ).all()
+            from django.core.mail import send_mail
+            send_mail(
+                'That’s your subject',
+                'That’s your message body',
+                'steve@djangoappfreze.herokuapp.com',
+                ['stevefrisson@gmail.com'],
+                fail_silently=False,
+            )
         return context
 
     def get_queryset(self):

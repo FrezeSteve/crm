@@ -10,26 +10,28 @@
         <div class="col-12">
           <div class="jumbotron p-3 mt-2">
             <div class="buttons">
-              <a href="{% url 'lead_new' %}" class="btn btn-primary my-1">Add Lead</a>
+              <a href="{% url 'lead_new' %}" class="btn btn-primary my-1"
+                >Add Lead</a
+              >
             </div>
 
             <hr />
             <ul class="list-group">
               {% for lead in lead_list %}
-              
+
               <li class="list-group-item">
                 <div class="row">
-                <div class="col-2 pr-1 pl-0 text-primary">
-                {{ forloop.counter }}
-                </div>
+                  <div class="col-2 pr-1 pl-0 text-primary">
+                    {{ forloop.counter }}
+                  </div>
                   <div class="col-7 col-md-3 col-sm- px-0 ">
                     <a href="/{{lead.pk}}/">
-                     {{lead.name}}
+                      {{lead.name}}
                     </a>
                   </div>
                   <div class="col-3 col-md-2 px-0 ">
                     <a href="/{{lead.pk}}/">
-                    {{lead.status}}
+                      {{lead.status}}
                     </a>
                   </div>
                   <div id="vismd" class="col-12 col-md-3 px-0 text-right">

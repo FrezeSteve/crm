@@ -129,3 +129,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 LOGOUT_REDIRECT_URL = '/'
+
+EMAIL_HOST = "smtp.djangoappfreze.herokuapp.com"
+EMAIL_PORT = 25
+EMAIL_HOST_USER = "steve@mysite.com"
+EMAIL_HOST_PASSWORD = ""
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
