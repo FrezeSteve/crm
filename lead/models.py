@@ -50,6 +50,9 @@ class Task(models.Model):
     active = models.BooleanField(default=True)
     trash = models.BooleanField(default=False)
 
+    def get_absolute_url(self):
+        return reverse('task_detail', kwargs={'pk': self.pk})
+
     def __str__(self):
         return str(self.title)
 
@@ -61,6 +64,9 @@ class Reminder(models.Model):
     dueTime = models.TimeField(default=timezone.now, blank=False, null=False)
     email = models.BooleanField(default=False)
     trash = models.BooleanField(default=False)
+
+    def get_absolute_url(self):
+        return reverse('task_detail', kwargs={'pk': self.task.pk})
 
     def __str__(self):
         return str(self.task)
