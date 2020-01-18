@@ -13,6 +13,7 @@
             </div>
             <div class="modal-body">
 {% load filt %}
+{% if reminder_form%}
 <form action="{% url 'reminder_create' pk=object.pk %}" method="post"> {% csrf_token %}
     {% for field in reminder_form %} {% if field.field.widget|is_checkbox %}
     <div class="form-group form-check">
@@ -26,6 +27,7 @@
         Save
     </button>
 </form>
+{% endif %}
                 </form>
             </div>
         </div>
