@@ -1,6 +1,6 @@
 from django import forms
 from .models import Lead, Task, Reminder
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, AdminPasswordChangeForm, PasswordChangeForm
 from django.utils import timezone
 
 
@@ -18,10 +18,36 @@ class UserLoginForm(AuthenticationForm):
     ))
 
 
+class UserChangeForm(PasswordChangeForm):
+    def __init__(self, user, *args, **kwargs):
+        super(UserChangeForm, self).__init__(user, *args, **kwargs)
+
+    old_password = forms.CharField(
+        label="Old Password",
+        widget=forms.PasswordInput(
+            attrs={'class': 'form-control', 'placeholder': 'username'}))
+    new_password1 = forms.CharField(
+        label="New Password",
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'password'
+            }
+        ))
+    new_password2 = forms.CharField(
+        label="Confirm Password",
+        widget=forms.PasswordInput(
+            attrs={
+                'class': 'form-control',
+                'placeholder': 'password'
+            }
+        ))
+
+
 class LeadForm(forms.ModelForm):
     class Meta:
         model = Lead
-        fields = ('status', 'source', 'assigned', 'name', 'phonenumber', 'location', 'email', 'description', )
+        fields = ('status', 'source', 'assigned', 'name', 'phonenumber', 'location', 'email', 'description',)
 
         widgets = {
             'status': forms.Select(attrs={'class': 'custom-select', 'required': 'required'}),
@@ -64,3 +90,30 @@ class ReminderForm(forms.ModelForm):
                                               'type': 'time',
                                               'placeholder': ''.format(timezone.now().time())}),
         }
+
+
+class UserEditForm(forms.Form):
+    image = forms.ImageField(
+        label='',
+        required=False,
+        widget=forms.FileInput(attrs={
+            'class': 'custom-file-input'
+            })
+    )
+    email = forms.CharField(
+        max_length=100, required=False,
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Email'
+        })
+    )
+    phonenumber = forms.CharField(
+        label='', required=False,
+        max_length=100,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Phone Number'
+        })
+    )
+    pass
+

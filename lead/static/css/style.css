@@ -1,6 +1,94 @@
-body{
-background-color:lightgrey;
+body {
+  background-color: lightgrey;
 }
-.jumbotron{
-background-color: #f8f9fa!important;
+
+.jumbotron {
+  background-color: #f8f9fa!important;
+}
+
+@media screen and (max-width: 425px) {
+  #vismd {
+    visibility: hidden;
+    display: none;
+  }
+  nav .container a.navbar-brand img#bimg {
+    width: 100px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #vismd {
+    visibility: visible;
+  }
+  nav .container a.navbar-brand img#bimg {
+    width: 150px;
+  }
+  nav .navbar-toggler-icon {
+    visibility: hidden;
+  }
+  .sidenav {
+    visibility: visible;
+  }
+}
+
+.dmain {
+  margin-left: 130px !important;
+}
+
+.sidenav {
+  height: 100%;
+  width: 160px;
+  margin-top: 80px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #626f80;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.show {
+  visibility: visible !important;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 160px;
+  /* Same as the width of the sidenav */
+  font-size: 28px;
+  /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+@media screen and (max-width: 425px) {
+  .sidenav {
+    width: 160px;
+    margin-top: 54px;
+    visibility: hidden;
+  }
+  .navbar-toggler-icon {
+    visibility: visible;
+  }
+  .container .navbar-brand, .container .navbar-nav .fa-home {
+    visibility: hidden;
+    display: none;
+  }
+  .dmain {
+    margin: 0px !important;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
 }

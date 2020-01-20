@@ -1,0 +1,11 @@
+<div class="card mt-2">
+    <div class="card-header text-light bg-primary">
+        Edit Reminder
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %} {{form.as_p}}
+            <button type="submit" class="btn btn-success my-2">Save</button>
+        </form>
+    </div>
+</div>

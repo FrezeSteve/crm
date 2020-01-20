@@ -15,7 +15,7 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf.urls import url
 from lead import views, forms
 from django.contrib.auth import views as auth_views
@@ -37,12 +37,20 @@ urlpatterns = [
     path('task/<int:pk>/createTask/', views.createTask, name='task_create'),
     path('task/<int:pk>/edit/', views.TaskUpdateView.as_view(), name='task_edit'),
     path('task/<int:pk>/remove/', views.deleteTask, name='task_remove'),
+    path('task/<int:pk>/complete/', views.completeTask, name='task_complete'),
 
     # Report
     path('report/', views.reports, name='report'),
 
     # Reminder
     path('reminder/<int:pk>/createReminder/', views.createReminder, name='reminder_create'),
+    path('reminder/<int:pk>/editReminder/', views.ReminderUpdateView.as_view(), name='reminder_update'),
+    path('reminder/<int:pk>/remove/', views.deleteReminder, name='reminder_remove'),
+
+    # User Profile
+    path('user/profile/', views.userProfile, name='user_profile'),
+    path('user/cpassword/', views.userProfile, name='password_change'),
+    path('user/edit/', views.changerProfile, name='user_edit'),
 
 
     # Accounts

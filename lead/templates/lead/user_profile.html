@@ -1,0 +1,113 @@
+{% extends 'lead/base.html' %}
+<title>{% block title %}User Profile{% endblock title %}</title>
+
+<body>
+    {% block content %}
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-12 col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Profile</h5>
+                        <hr>
+                        <img width="200px" src="
+                            {% if user.profile.image %}
+                                /media/{{user.profile.image}}
+                            {% else %}
+                                /media/default_user.png
+                            {% endif %}" class="mb-2 img-fluid rounded" alt="Responsive image">
+                        <h6 class="card-subtitle mb-2 text-muted">{{user.username}}</h6>
+                        <p class="card-text">
+                            <i class="fas fa-envelope"></i> {{user.email}} <br>
+                            <i class="fas fa-phone-square"></i> {{ user.profile.phonenumber }}
+                        </p>
+                        <button data-toggle="modal" data-target="#editProfile" class="pl-0 card-link btn btn-link">
+                            edit
+                        </button>
+                        <button data-toggle="modal" data-target="#changepassword" class="card-link btn btn-link">change
+                            password
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Change_Password-->
+    <div class="modal fade" id="changepassword" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">Change Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <form method="post">
+                                {% csrf_token %} {{form.as_p}}
+                                <button type="submit" class="btn btn-warning my-2">Change</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Edit_Profile-->
+    <div class="modal fade" id="editProfile" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">Edit Profile</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <form enctype="multipart/form-data" action="{% url 'user_edit' %}" method="post">
+                                {% csrf_token %} {% load filt %}
+                                {% for field in form1 %} {% if field.field.widget|is_fileinput %}
+                                <div class="custom-file mb-3">
+                                    {{ field }}
+                                    <label class="custom-file-label" for="id_image">Choose image</label>
+                                </div>
+                                {% elif field.field.widget|is_textinput %}
+                                <div class="form-group">
+                                    <label for="id_phonenumber">Phone Number: </label>
+                                    {{ field }}
+                                </div>
+                                {% else %}
+                                <div class="form-group">
+                                    {{ field.label_tag }} {{ field }}
+                                </div>
+                                {% endif %}
+
+                                {% endfor %}
+                                <button type="submit" class="btn btn-success my-2">Save</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
+    {% block scripts %}
+    <script>
+        $(document).ready(function () {
+            $('#id_image').on('change', function (e) {
+                const fileName = e.target.files[0].name;
+                $('label.custom-file-label').html(fileName)
+            })
+        });
+    </script>
+    {% endblock scripts %}
+</body>

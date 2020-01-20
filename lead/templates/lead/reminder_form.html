@@ -12,22 +12,22 @@
                 </button>
             </div>
             <div class="modal-body">
-{% load filt %}
-{% if reminder_form%}
-<form action="{% url 'reminder_create' pk=object.pk %}" method="post"> {% csrf_token %}
-    {% for field in reminder_form %} {% if field.field.widget|is_checkbox %}
-    <div class="form-group form-check">
-        {{ field }}{{ field.label_tag }}
-    </div>
-    {% else %}
-    <div class="form-group">{{ field.label_tag }}{{ field }}</div>
+                {% load filt %}
+                {% if reminder_form%}
+                <form action="{% url 'reminder_create' pk=object.pk %}" method="post"> {% csrf_token %}
+                    {% for field in reminder_form %} {% if field.field.widget|is_checkbox %}
+                    <div class="form-group form-check">
+                        {{ field }}{{ field.label_tag }}
+                    </div>
+                    {% else %}
+                    <div class="form-group">{{ field.label_tag }}{{ field }}</div>
 
-    {% endif %} {% endfor %}
-    <button type="submit" class="btn btn-success btn-sm my-1">
-        Save
-    </button>
-</form>
-{% endif %}
+                    {% endif %} {% endfor %}
+                    <button type="submit" class="btn btn-success btn-sm my-1">
+                        Save
+                    </button>
+                </form>
+                {% endif %}
                 </form>
             </div>
         </div>

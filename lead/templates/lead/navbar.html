@@ -1,60 +1,81 @@
 {% load static %}
-<nav class="navbar navbar-expand navbar-dark bg-dark pl-1">
+<nav class="navbar navbar-expand navbar-dark bg-dark pl-1" style="z-index: 2;">
   <div class="container">
-<a class="navbar-brand text-light py-0" href="/"><img id='bimg' class="img-fluid" src="/media/bpro.png" alt='image' /></a>
-<div class="navbar-nav">
-  <a class="nav-link px-1 px-sm-3" href="/"><span class="text-light">
-  <i class="fas fa-lg text-light fa-home"></i>
-  </span>
-  </a>
-</div>
-<div class="navbar-nav ml-sm-auto">
-  {% if not request.user.is_authenticated %}
+    <a class="navbar-brand text-light py-0" href="/"><img id='bimg' class="img-fluid" src="/media/bpro.png"
+        alt='image' /></a>
+    <span class="ml-3 navbar-toggler-icon"></span>
+    <div class="navbar-nav">
+      <a class="nav-link px-1 px-sm-3" href="/"><span class="text-light">
+          <i class="fas fa-lg text-light fa-home"></i>
+        </span>
+      </a>
+    </div>
+    <div class="navbar-nav ml-sm-auto">
+      {% if not request.user.is_authenticated %}
 
-  <a class="nav-link px-1 px-sm-3" href="#"><span class="text-light">Login</span>
-    <span class="sr-only">(current)</span></a>
-  {% else %}
-  <!-- <a class="nav-link" href="#" data-toggle="tooltip" data-placement="bottom" title="Profile">
+      <a class="nav-link px-1 px-sm-3" href="#"><span class="text-light">Login</span>
+        <span class="sr-only">(current)</span></a>
+      {% else %}
+      <!-- <a class="nav-link" href="#" data-toggle="tooltip" data-placement="bottom" title="Profile">
         <i class="far fa-lg text-light fa-user"></i> -->
-  </a>
-  <li class="nav-item dropdown">
-  <button class="btn btn-lnk px-1 text-light px-sm-3 dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" data-toggle="tooltip" data-placement="bottom" title="User"
-  ><i class="far fa-lg fa-user text-light">
-    </i>
-  </button>
-  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Profile</a>
+      </a>
+      <li class="nav-item dropdown">
+        <button class="btn btn-lnk px-1 text-light px-sm-3 dropdown-toggle" id="navbarDropdown" data-toggle="dropdown"
+          data-toggle="tooltip" data-placement="bottom" title="User"><i class="far fa-lg fa-user text-light">
+          </i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'user_profile' %}">Profile</a>
           {% if request.user.is_staff %}
-                <a href="{% url 'report' %}" class="dropdown-item" >Reports</a>
-              {% endif %}
+          <a href="{% url 'report' %}" class="dropdown-item">Reports</a>
+          {% endif %}
           <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
         </div>
-        </li>
-  <button class="btn btn-lnk px-1 px-sm-3" data-toggle="modal" data-target="#exampleModalScrollable" data-toggle="tooltip"
-    data-placement="bottom" title="Tasks"><i class="far fa-lg fa-check-circle text-light"></i>
-    {% if task_count %}
-    <sup>
-      <span class="badge badge-success">
-        {{task_count|length}}
-      </span>
-    </sup>
-    {% endif %}
-  </button>
-  <button class="btn btn-lnk px-1 px-sm-3" data-toggle="modal" data-target="#Reminder" data-toggle="tooltip" data-placement="bottom" title="Reminders"><i
-      class="far fa-lg fa-clock text-light"></i><sup><span class="badge badge-success">{{reminders|length}}</span></sup></button>
-  {% endif %}
-  </ul>
-</div>
+      </li>
+      <button class="btn btn-lnk px-1 px-sm-3" data-toggle="modal" data-target="#exampleModalScrollable"
+        data-toggle="tooltip" data-placement="bottom" title="Tasks"><i class="far fa-lg fa-check-circle text-light"></i>
+        {% if task_count %}
+        <sup>
+          <span class="badge badge-success">
+            {{task_count|length}}
+          </span>
+        </sup>
+        {% endif %}
+      </button>
+      <button class="btn btn-lnk px-1 px-sm-3" data-toggle="modal" data-target="#Reminder" data-toggle="tooltip"
+        data-placement="bottom" title="Reminders"><i class="far fa-lg fa-clock text-light"></i><sup><span
+            class="badge badge-success">{{reminders|length}}</span></sup></button>
+      {% endif %}
+      </ul>
+    </div>
   </div>
 </nav>
+<div class="sidenav">
+  <a class="text-light" href="{% url 'lead_list' %}">
+    <i class="fas text-light fa-home"></i>
+    Leads
+  </a>
+  <hr>
+  <a class="text-light" href="{% url 'user_profile' %}">
+    <i class="far text-light fa-user"></i>
+    Profile
+  </a>
+  <hr>
+  <a class="text-light" href="{% url 'report' %}">
+    <i class="fas fa-file-pdf text-light"></i>
+    Report
+  </a>
+  <hr>
+</div>
 {% comment %} <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li> {% endcomment %}
+  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+    aria-haspopup="true" aria-expanded="false">
+    Dropdown
+  </a>
+  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</li> {% endcomment %}
