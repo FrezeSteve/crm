@@ -42,7 +42,7 @@ nav {
         display: initial;
     }
     a#navbarDrop.dropdown-toggle::after {
-        /* display: none; */
+        display: none;
     }
     .dropdown-menu {
         right: .25em;
