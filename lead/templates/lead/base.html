@@ -21,7 +21,7 @@
     {% include "lead/navbar.html" %} {% include "lead/modal.html" %}
   </div>
   {% endif %}
-  <div class="dmain">
+  <div id="dmain" class="dmain">
     {% block content %} {% endblock content %}
   </div>
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
@@ -38,6 +38,7 @@
     $(document).ready(function () {
       $('.navbar-toggler').click(function (e) {
         $('.sidenav').toggleClass('activateNav')
+        $("#dmain").toggleClass('dmain')
       })
     })
   </script>

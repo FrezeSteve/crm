@@ -39,10 +39,10 @@ nav {
         border: 0px;
     }
     .navbar-expand .navbar-toggler {
-        display: none;
+        display: initial;
     }
     a#navbarDrop.dropdown-toggle::after {
-        display: none;
+        /* display: none; */
     }
     .dropdown-menu {
         right: .25em;
@@ -59,7 +59,7 @@ nav {
         background-color: #626f80;
         overflow-x: hidden;
         padding-top: 2rem;
-        transition: all 500ms linear;
+        transition: all 550ms linear;
     }
     .sidenav a {
         padding: 6px 8px 6px 16px;
@@ -71,7 +71,13 @@ nav {
         color: #f1f1f1;
     }
     .dmain {
-        margin-left: 150px !important;
+        margin-left: 150px;
+    }
+    #dmain {
+        transition: all 500ms linear;
+    }
+    .activateNav {
+        left: -200px !important;
     }
 }
 
