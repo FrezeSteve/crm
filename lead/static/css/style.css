@@ -12,9 +12,31 @@ body {
     background-color: #f8f9fa!important;
 }
 
-nav {
+nav#top {
     background-image: linear-gradient(to right, #415165 0%, #51647c 26%, #51647c 73%, #4f5d7a 100%);
 }
+
+#lead {
+    color: #008ece;
+}
+
+.text-diff {
+    color: #4e75ad;
+}
+
+/* .table {
+    color: #008ece;
+    width: 100%;
+    max-width: 100%;
+}
+
+.table thead.thead tr th {
+    color: #4e75ad
+}
+
+.table tr td {
+    white-space: nowrap;
+} */
 
 @media screen and (min-width: 600px) {
     /*tabs and laptops*/

@@ -1,0 +1,84 @@
+<!-- <table class="table table-responsive mx-auto mt-3">
+    <thead class="thead">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for lead in leads %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td width="200px">{{lead.name}}</td>
+            <td>{{lead.status}}</td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table> -->
+<hr>
+<ul id="lead" class="list-group">
+    <li class="list-group-item">
+        <div class="row text-diff">
+            <div class="col-2 text-center">#</div>
+            <div class="col-7">Name</div>
+            <div class="col-3">Status</div>
+        </div>
+    </li>
+    {% for lead in leads %}
+
+    <li class="list-group-item">
+        <div class="row">
+            <div class="col-2 pr-1 pl-0 text-center">
+                {{ forloop.counter }}
+            </div>
+            <div class="col-7 col-md-3 col-sm- px-0 ">
+                <a href="/{{lead.pk}}/">
+                    {{lead.name}}
+                </a>
+            </div>
+            <div class="col-3 col-md-2 px-0 ">
+                <a href="/{{lead.pk}}/">
+                    {{lead.status}}
+                </a>
+            </div>
+            <div id="vismd" class="col-12 col-md-3 px-0 text-right">
+                <a href="{% url 'lead_edit' pk=lead.pk %}" class="btn btn-warning btn-sm mr-1" data-toggle="tooltip"
+                    data-placement="bottom" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                <a href="{% url 'lead_remove' pk=lead.pk %}" class="btn btn-danger btn-sm" data-toggle="tooltip"
+                    data-placement="bottom" title="Delete"><i class="fas fa-trash"></i></a>
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+
+<!-- <ul class="list-group">
+    {% for lead in leads %}
+
+    <li class="list-group-item">
+        <div class="row">
+            <div class="col-2 pr-1 pl-0 text-primary">
+                {{ forloop.counter }}
+            </div>
+            <div class="col-7 col-md-3 col-sm- px-0 ">
+                <a href="/{{lead.pk}}/">
+                    {{lead.name}}
+                </a>
+            </div>
+            <div class="col-3 col-md-2 px-0 ">
+                <a href="/{{lead.pk}}/">
+                    {{lead.status}}
+                </a>
+            </div>
+            <div id="vismd" class="col-12 col-md-3 px-0 text-right">
+                <a href="{% url 'lead_edit' pk=lead.pk %}" class="btn btn-warning btn-sm mr-1" data-toggle="tooltip"
+                    data-placement="bottom" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                <a href="{% url 'lead_remove' pk=lead.pk %}" class="btn btn-danger btn-sm" data-toggle="tooltip"
+                    data-placement="bottom" title="Delete"><i class="fas fa-trash"></i></a>
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+</ul> -->
