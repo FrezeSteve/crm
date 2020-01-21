@@ -2,6 +2,7 @@
 <title>
   {% block title %} List of Leads {% endblock title %}
 </title>
+
 <body>
   <div class="container">
     {% block content %}
@@ -10,12 +11,26 @@
         <div class="col-12">
           <div class="jumbotron p-3 mt-2">
             <div class="buttons">
-              <a href="{% url 'lead_new' %}" class="btn btn-primary my-1"
-                >Add Lead</a
-              >
+              <a href="{% url 'lead_new' %}" class="btn btn-sm-mobile text-left btn-primary my-1">NEW LEAD</a>
             </div>
 
             <hr />
+            <div class="filters">
+              <p>Filter by</p>
+              <select class="custom-select mb-1">
+                <option selected>Source</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+              <select class="custom-select mb-1">
+                <option selected>Assigned</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+            <hr>
             <ul class="list-group">
               {% for lead in lead_list %}
 
@@ -35,22 +50,10 @@
                     </a>
                   </div>
                   <div id="vismd" class="col-12 col-md-3 px-0 text-right">
-                    <a
-                      href="{% url 'lead_edit' pk=lead.pk %}"
-                      class="btn btn-warning btn-sm mr-1"
-                      data-toggle="tooltip"
-                      data-placement="bottom"
-                      title="Edit"
-                      ><i class="fas fa-pencil-alt"></i
-                    ></a>
-                    <a
-                      href="{% url 'lead_remove' pk=lead.pk %}"
-                      class="btn btn-danger btn-sm"
-                      data-toggle="tooltip"
-                      data-placement="bottom"
-                      title="Delete"
-                      ><i class="fas fa-trash"></i
-                    ></a>
+                    <a href="{% url 'lead_edit' pk=lead.pk %}" class="btn btn-warning btn-sm mr-1" data-toggle="tooltip"
+                      data-placement="bottom" title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                    <a href="{% url 'lead_remove' pk=lead.pk %}" class="btn btn-danger btn-sm" data-toggle="tooltip"
+                      data-placement="bottom" title="Delete"><i class="fas fa-trash"></i></a>
                   </div>
                 </div>
               </li>
@@ -62,11 +65,7 @@
               <ul class="pagination m-0 ">
                 <li class="page-item">
                   {% if lead_list.has_previous %}
-                  <a
-                    class="page-link"
-                    href="?page={{ lead_list.previous_page_number }}"
-                    aria-label="Previous"
-                  >
+                  <a class="page-link" href="?page={{ lead_list.previous_page_number }}" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                   </a>
                   {% endif %}
@@ -76,11 +75,7 @@
                 </li>
                 <li class="page-item">
                   {% if lead_list.has_next %}
-                  <a
-                    class="page-link"
-                    href="?page={{ lead_list.next_page_number }}"
-                    aria-label="Next"
-                  >
+                  <a class="page-link" href="?page={{ lead_list.next_page_number }}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                   </a>
                   {%endif %}

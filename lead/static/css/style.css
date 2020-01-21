@@ -1,94 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
-  background-color: lightgrey;
+    background-color: lightgrey;
+    font-family: "Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif";
 }
 
 .jumbotron {
-  background-color: #f8f9fa!important;
+    background-color: #f8f9fa!important;
 }
 
-@media screen and (max-width: 425px) {
-  #vismd {
-    visibility: hidden;
-    display: none;
-  }
-  nav .container a.navbar-brand img#bimg {
-    width: 100px;
-  }
+nav {
+    background-image: linear-gradient(to right, #415165 0%, #51647c 26%, #51647c 73%, #4f5d7a 100%);
 }
 
-@media screen and (min-width: 768px) {
-  #vismd {
-    visibility: visible;
-  }
-  nav .container a.navbar-brand img#bimg {
-    width: 150px;
-  }
-  nav .navbar-toggler-icon {
-    visibility: hidden;
-  }
-  .sidenav {
-    visibility: visible;
-  }
+@media screen and (min-width: 600px) {
+    /*tabs and laptops*/
+    nav.navbar {
+        display: flex;
+        z-index: 2;
+        max-height: 63px;
+    }
+    .fa-sm-lg {
+        font-size: 1.4em;
+        line-height: .75em;
+        vertical-align: -.0667em;
+    }
+    #bimg {
+        max-width: 30%;
+        height: 63px;
+    }
+    a.navbar-brand {
+        display: contents;
+    }
+    .navbar-dark .navbar-toggler {
+        border: 0px;
+    }
+    .navbar-expand .navbar-toggler {
+        display: none;
+    }
+    a#navbarDrop.dropdown-toggle::after {
+        display: none;
+    }
+    .dropdown-menu {
+        right: .25em;
+        left: 79%;
+    }
+    .sidenav {
+        height: 100%;
+        width: 160px;
+        margin-top: 1rem;
+        position: fixed;
+        z-index: 1;
+        top: 24px;
+        left: 0;
+        background-color: #626f80;
+        overflow-x: hidden;
+        padding-top: 2rem;
+        transition: all 500ms linear;
+    }
+    .sidenav a {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        color: #818181;
+        display: block;
+    }
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+    .dmain {
+        margin-left: 150px !important;
+    }
 }
 
-.dmain {
-  margin-left: 130px !important;
-}
-
-.sidenav {
-  height: 100%;
-  width: 160px;
-  margin-top: 80px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #626f80;
-  overflow-x: hidden;
-  padding-top: 20px;
-}
-
-.show {
-  visibility: visible !important;
-}
-
-.sidenav a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-}
-
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-.main {
-  margin-left: 160px;
-  /* Same as the width of the sidenav */
-  font-size: 28px;
-  /* Increased text to enable scrolling */
-  padding: 0px 10px;
-}
-
-@media screen and (max-width: 425px) {
-  .sidenav {
-    width: 160px;
-    margin-top: 54px;
-    visibility: hidden;
-  }
-  .navbar-toggler-icon {
-    visibility: visible;
-  }
-  .container .navbar-brand, .container .navbar-nav .fa-home {
-    visibility: hidden;
-    display: none;
-  }
-  .dmain {
-    margin: 0px !important;
-  }
-  .sidenav a {
-    font-size: 18px;
-  }
+@media screen and (max-width: 600px) {
+    /*mobile devices*/
+    nav.navbar {
+        display: flex;
+        z-index: 2;
+    }
+    #bimg {
+        max-width: 30%;
+    }
+    a.navbar-brand {
+        display: contents;
+    }
+    .navbar-dark .navbar-toggler {
+        border: 0px;
+    }
+    .navbar-expand .navbar-toggler {
+        display: initial;
+    }
+    a#navbarDrop.dropdown-toggle::after {
+        display: none;
+    }
+    .dropdown-menu {
+        width: 100%;
+        border: 0px;
+        border-radius: 2px;
+    }
+    .sidenav {
+        height: 100%;
+        width: 160px;
+        margin-top: 1rem;
+        position: fixed;
+        z-index: 1;
+        top: 24px;
+        left: -200px;
+        background-color: #626f80;
+        overflow-x: hidden;
+        padding-top: 2rem;
+        transition: all 500ms linear;
+    }
+    .sidenav a {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        color: #818181;
+        display: block;
+    }
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+    .activateNav {
+        left: 0px !important;
+    }
+    .btn-sm-mobile {
+        padding: .25rem .5rem;
+        font-size: .875rem;
+        line-height: 1.5;
+        border-radius: .2rem;
+        width: 100%;
+    }
+    .btn-primary {
+        border-color: #03a9f4 !important;
+        background-color: #03a9f4 !important;
+    }
+    #vismd {
+        display: none;
+    }
 }

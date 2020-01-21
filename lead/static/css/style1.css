@@ -1,0 +1,105 @@
+body {
+  background-color: lightgrey;
+}
+
+.jumbotron {
+  background-color: #f8f9fa!important;
+}
+
+.dmain {
+  margin-left: 130px !important;
+}
+
+.sidenav {
+  height: 100%;
+  width: 160px;
+  margin-top: 80px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: -200px;
+  background-color: #626f80;
+  overflow-x: hidden;
+  padding-top: 20px;
+  transition: all 500ms linear;
+}
+
+.activateNav {
+  left: 0px;
+}
+
+.show {
+  visibility: visible !important;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 160px;
+  /* Same as the width of the sidenav */
+  font-size: 28px;
+  /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+nav {
+  background-image: linear-gradient(to right, #415165 0%, #51647c 26%, #51647c 73%, #4f5d7a 100%);
+}
+
+nav a.navbar-brand {
+  background-color: white !important;
+}
+
+@media screen and (max-width: 600px) {
+  /*mobile devices*/
+  #bimg {
+    max-width: 30%;
+  }
+  #vismd {
+    visibility: hidden;
+    display: none;
+  }
+  /* nav .navbar-toggler-icon {
+    visibility: hidden;
+  } */
+  /* .sidenav {
+    visibility: visible;
+  } */
+}
+
+@media screen and (min-width: 600px) {
+  /*tabs and laptops*/
+  #vismd {
+    visibility: visible;
+  }
+  nav .container a.navbar-brand img#bimg {
+    max-width: 100%;
+  }
+  .sidenav {
+    width: 160px;
+    margin-top: 54px;
+    /* visibility: hidden; */
+  }
+  /* .navbar-toggler-icon {
+    visibility: visible;
+  } */
+  .container .navbar-brand, .container .navbar-nav .fa-home {
+    visibility: hidden;
+    display: none;
+  }
+  .dmain {
+    margin: 0px !important;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
+}

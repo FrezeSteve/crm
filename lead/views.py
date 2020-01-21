@@ -360,6 +360,20 @@ def changerProfile(request):
     return HttpResponseForbidden("<h1>I Don't know whats happening</h1>")
 
 
+# EndPoint for changing status to customer
+@login_required
+def statusComplete(request, pk):
+    object = get_object_or_404(Lead, pk=pk)
+    pk = object.task.pk
+    # if the reminder is completed you can't delete it
+    if object.task.completed:
+        return HttpResponseForbidden("<h1 style='color:red;text-align:center;'>Cant delete this reminder!</h1>")
+    if not object.trash:
+        object.trash = True
+        object.save()
+    return HttpResponseRedirect(reverse_lazy('task_detail', kwargs={'pk': pk}))
+    pass
+
 # Reports Source
 @login_required
 def reports(request):
@@ -450,6 +464,8 @@ def genRepo(request, model, name):
 
     plt.savefig(os.path.join(settings.MEDIA_ROOT, report_name))
     return report_name
+
+
 
 
 def datagenTasks():
@@ -571,4 +587,4 @@ def sendEmail():
                 else: print("cant send email")
 
 
-RepeatedTimer(30.0, sendEmail)
+# RepeatedTimer(30.0, sendEmail)
