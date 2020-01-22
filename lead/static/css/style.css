@@ -24,6 +24,26 @@ nav#top {
     color: #4e75ad;
 }
 
+.btn-filters {
+    width: 100%;
+}
+
+.btn-filters button {
+    border: 1px solid #ced4da;
+    text-align: left;
+    background-color: #fff !important;
+}
+
+.show>.btn-secondary.dropdown-toggle, .show>.btn-secondary.dropdown-toggle:focus, .show>.btn-secondary:not(:disabled):not(.disabled):active:focus, .btn-filters button:focus, .btn-filters button:hover {
+    border-color: #80bdff !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25) !important;
+}
+
+.btn-filters button::after {
+    float: right;
+    margin-top: .5em;
+}
+
 /* .table {
     color: #008ece;
     width: 100%;

@@ -19,20 +19,33 @@
               <p>Filter by</p>
               <div class="row">
                 <div class="col-12 col-md-3">
-                  <select class="custom-select mb-1">
-                    <option selected>Source</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
+                  <!-- Example single danger button -->
+                  <div class="btn-group btn-filters my-1">
+                    <button type="button" class="btn btn-secondary text-dark dropdown-toggle" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      Source
+                    </button>
+                    <div class="dropdown-menu">
+                      {% for s in source %}
+                      <a class="dropdown-item" href="?source={{ s.name }}">{{s.name}}</a>
+                      <div class="dropdown-divider"></div>
+                      {% endfor %}
+                    </div>
+                  </div>
                 </div>
                 <div class="col-12 col-md-3">
-                  <select class="custom-select mb-1">
-                    <option selected>Assigned</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
+                  <div class="btn-group btn-filters my-1">
+                    <button type="button" class="btn btn-secondary text-dark dropdown-toggle" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      Assigned
+                    </button>
+                    <div class="dropdown-menu">
+                      {% for s in status %}
+                      <a class="dropdown-item" href="?status={{ s.name }}">{{s.name}}</a>
+                      <div class="dropdown-divider"></div>
+                      {% endfor %}
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -73,3 +86,11 @@
     {% endblock content %}
   </div>
 </body>
+<!-- <select class="custom-select mb-1">
+                    <option selected>Source</option>
+                    {% for s in source %}
+                    <a href="?source={{ s.name }}">
+                      <option value="{{s.name}}">{{s.name}}</option>
+                    </a>
+                    {% endfor %}
+                  </select> -->

@@ -4,8 +4,10 @@
       <h5 class="card-header text-light bg-primary">{{lead.name}}
       </h5>
       <div class="card-body">
+        {% if 'customer' != lead.status.name|lower  %}
+        <a class="btn btn-success btn-sm" href="{% url 'lead_complete' pk=lead.pk%}">Customer</a>
+        {% endif %}
 
-        <a class="btn btn-success btn-sm" href="#">Customer</a>
         <a href="{% url 'lead_edit' pk=object.pk %}" class="btn btn-sm btn-warning mr-1 my-1">Edit <i
             class="fas fa-pencil-alt"></i></a>
         <a type="button" data-toggle="modal" data-target="#addTask" class="btn btn-sm my-1 btn-primary text-light">

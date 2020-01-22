@@ -31,6 +31,7 @@ urlpatterns = [
     path('new/', views.CreateLeadView.as_view(), name='lead_new'),
     path('<int:pk>/edit/', views.LeadUpdateView.as_view(), name='lead_edit'),
     path('<int:pk>/remove/', views.deleteLead, name='lead_remove'),
+    path('<int:pk>/complete/', views.statusComplete, name='lead_complete'),
 
     # Task
     path('task/<int:pk>/', views.TaskDetailView.as_view(), name='task_detail'),

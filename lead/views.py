@@ -37,9 +37,18 @@ class LeadListView(LoginRequiredMixin, ListView):
             context['task_count'] = Task.objects.filter(
                 author=self.request.user, trash=False).exclude(
                 lead__trash=True).all()
+            qs = self.get_queryset()
+            # sorting the leads
+            sort1 = self.request.GET.get('source')
+            if sort1:
+                qs = qs.filter(source__name=sort1).all()
+            sort2 = self.request.GET.get('status')
+            if sort2:
+                qs = qs.filter(status__name=sort2).all()
             # pagination
-            paginator = Paginator(self.get_queryset(), 12)
+            paginator = Paginator(qs, 12)
             page = self.request.GET.get('page')
+
             leads = paginator.get_page(page)
             context['lead_list'] = leads
             # reminder
@@ -49,7 +58,10 @@ class LeadListView(LoginRequiredMixin, ListView):
                 task__author=self.request.user,  # the user is the one is the owner
                 trash=False  # the reminder is not in the trash
             ).all()
-            # datagenTasks()
+            # Source
+            source = Source.objects.all()
+            context['source'] = source
+            context['status'] = Status.objects.all()
         return context
 
     def get_queryset(self):
@@ -364,15 +376,16 @@ def changerProfile(request):
 @login_required
 def statusComplete(request, pk):
     object = get_object_or_404(Lead, pk=pk)
-    pk = object.task.pk
     # if the reminder is completed you can't delete it
-    if object.task.completed:
-        return HttpResponseForbidden("<h1 style='color:red;text-align:center;'>Cant delete this reminder!</h1>")
-    if not object.trash:
-        object.trash = True
-        object.save()
-    return HttpResponseRedirect(reverse_lazy('task_detail', kwargs={'pk': pk}))
-    pass
+    com = Status.objects.filter(name__icontains='customer').first()
+    print(com.name)
+    if com is None: return HttpResponseForbidden(
+            "<h1 style='color:red;text-align:center;'>Cant convert this customer! Contact admin!!!</h1>")
+    if 'customer' in object.status.name: return HttpResponseForbidden(
+            "<h1 style='color:red;text-align:center;'>Cant convert this customer twice!</h1>")
+    object.status = com
+    object.save()
+    return HttpResponseRedirect(reverse_lazy('lead_detail', kwargs={'pk': object.pk}))
 
 # Reports Source
 @login_required

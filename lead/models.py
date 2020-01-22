@@ -8,7 +8,7 @@ from django.utils import timezone
 
 # Create your models here.
 class Status(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, default='completed')
 
     def __str__(self):
         return str(self.name)
