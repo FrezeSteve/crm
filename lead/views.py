@@ -36,7 +36,7 @@ class LeadListView(LoginRequiredMixin, ListView):
             # Task
             context['task_count'] = Task.objects.filter(
                 author=self.request.user, trash=False).exclude(
-                lead__trash=True).all()
+                lead__trash=True).exclude(completed=True).all()
             qs = self.get_queryset()
             # sorting the leads
             sort1 = self.request.GET.get('source')
