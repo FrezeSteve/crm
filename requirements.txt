@@ -1,5 +1,5 @@
 cycler==0.10.0
-Django==2.2.9
+Django==2.2.22
 django-graphos==0.3.41
 gunicorn==20.0.4
 kiwisolver==1.1.0
